@@ -3,7 +3,7 @@ package Buquealtoque;
 import java.util.Scanner;
 
 public class GestorPersona {
-    private static final int CAPACIDAD_INICIAL = 10; // Capacidad inicial del array
+    private static final int CAPACIDAD_INICIAL = 10; 
     private static Persona[] personas = new Persona[CAPACIDAD_INICIAL];
     private static int contadorPersonas = 0;
 
@@ -34,22 +34,20 @@ public class GestorPersona {
         System.out.println("Ingrese la Password:");
         String contraseña = scanner.nextLine();
 
-        // Crear la nueva persona
         Persona nuevaPersona = new Persona(nombre, apellido, domicilio, dni, fechaNacimiento, tarjetaCredito, email, contraseña);
 
-        // Asegurar que el array tenga suficiente capacidad
+
         if (contadorPersonas >= personas.length) {
-            // Redimensionar el array
+       
             Persona[] newArray = new Persona[personas.length * 2];
-            // Copiar elementos al nuevo array
+
             System.arraycopy(personas, 0, newArray, 0, personas.length);
             personas = newArray;
         }
 
-        // Agregar la nueva persona al array y actualizar el contador
         personas[contadorPersonas++] = nuevaPersona;
 
-        // Retornar al método llamante
+        
         imprimirPersonas();
     }
 

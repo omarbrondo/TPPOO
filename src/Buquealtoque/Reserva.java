@@ -1,32 +1,31 @@
 package Buquealtoque;
 
-public class Reserva 
-{
-	private int id;
-	private EstadoReserva estado;
-	private Pago pago;
-//	private Cliente cliente;
-//	private Producto producto;
-	
-	//metodos....
-	
-	
-//	Reserva(Cliente c)
-//	{
-//		estado = EstadoReserva.ENEDICION;
-//		cliente=c;
-//	}
-	
-	public void setEstado(EstadoReserva er)
-	{
-		
-		estado=er;
-	}
-	public void mostrarEstado()
-	{
-		System.out.println("el estado de la reserva es: " + estado);
-	}
-	
-	
-	
+public class Reserva {
+    private String clienteDni;
+    private String buqueId;
+    private int fila;
+    private int columna;
+
+    public Reserva(String clienteDni, String buqueId, int fila, int columna) {
+        this.clienteDni = clienteDni;
+        this.buqueId = buqueId;
+        this.fila = fila;
+        this.columna = columna;
+    }
+
+    public String getClienteDni() {
+        return clienteDni;
+    }
+
+    public String getBuqueId() {
+        return buqueId;
+    }
+
+    public int getFila() {
+        return fila;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
 }

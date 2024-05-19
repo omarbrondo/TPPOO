@@ -9,10 +9,12 @@ public class Principal {
         while (continuar) {
             menu.mostrarMenu();
             int opcion = menu.leerOpcion();
+            
+            
 
             switch (opcion) {
                 case 1:
-                    // Alta de reserva
+                	GestorReserva.gestionarReserva();
                     break;
                 case 2:
                     GestorPersona.altaPersona();
