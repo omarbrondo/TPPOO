@@ -34,9 +34,7 @@ public class GestorReserva {
         System.out.println("Ingrese el DNI del cliente:");
         String dni = scanner.nextLine();
 
-        System.out.println("¿A qué destino desea viajar?\n");
-        System.out.println("[1] Argentina\n");
-        System.out.println("[2] Uruguay\n");
+        System.out.println("¿A qué destino desea viajar? (1 para Argentina, 2 para Uruguay):");
         int destino = scanner.nextInt();
         scanner.nextLine(); // Consumir el salto de línea pendiente
 
@@ -58,7 +56,7 @@ public class GestorReserva {
 
             if (!buque.getAsientos()[fila][columna]) {
                 buque.getAsientos()[fila][columna] = true;
-                reservas.add(new Reserva(dni, buque.getId(), fila, columna));
+                reservas.add(new Reserva(dni, buque.getId(), destino, fila, columna));
                 System.out.println("Reserva realizada exitosamente.");
             } else {
                 System.out.println("Asiento ya está ocupado.");
@@ -66,6 +64,28 @@ public class GestorReserva {
         } else {
             System.out.println("Destino no disponible.");
         }
+    }
+
+    public void verMisReservas() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese su DNI para ver sus reservas:");
+        String dni = scanner.nextLine();
+
+        System.out.println("Reservas del cliente con DNI " + dni + ":");
+
+        for (Reserva reserva : reservas) {
+            if (reserva.getClienteDni().equals(dni)) {
+                System.out.println("ID de reserva: " + reserva.getId());
+                System.out.println("Buque: "+ reserva.getBuqueId());
+                System.out.println("Destino: " + (reserva.getDestino() == 1 ? "Argentina" : "Uruguay")); // Mostrar el destino del buque como texto
+                System.out.println("Asiento: " + convertirAsiento(reserva.getFila(), reserva.getColumna()));
+                System.out.println("Pagado: " + reserva.isPagada());
+            }
+        }
+    }
+    private String convertirAsiento(int fila, int columna) {
+        char letraColumna = (char) ('A' + columna); 
+        return (fila + 1) + String.valueOf(letraColumna); 
     }
 
     private static Buque encontrarBuque(String id) {
