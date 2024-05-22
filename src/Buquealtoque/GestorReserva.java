@@ -66,24 +66,30 @@ public class GestorReserva {
         }
     }
 
-    public void verMisReservas() {
+    public static void verMisReservas() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese su DNI para ver sus reservas:");
         String dni = scanner.nextLine();
 
         System.out.println("Reservas del cliente con DNI " + dni + ":");
-
+        
+        boolean found = false;
         for (Reserva reserva : reservas) {
             if (reserva.getClienteDni().equals(dni)) {
                 System.out.println("ID de reserva: " + reserva.getId());
-                System.out.println("Buque: "+ reserva.getBuqueId());
+                System.out.println("Buque: " + reserva.getBuqueId());
                 System.out.println("Destino: " + (reserva.getDestino() == 1 ? "Argentina" : "Uruguay")); // Mostrar el destino del buque como texto
                 System.out.println("Asiento: " + convertirAsiento(reserva.getFila(), reserva.getColumna()));
                 System.out.println("Pagado: " + reserva.isPagada());
+                found = true;
             }
         }
+        if (!found) {
+            System.out.println("No hay reservas para este DNI.");
+        }
     }
-    private String convertirAsiento(int fila, int columna) {
+
+    private static String convertirAsiento(int fila, int columna) {
         char letraColumna = (char) ('A' + columna); 
         return (fila + 1) + String.valueOf(letraColumna); 
     }
