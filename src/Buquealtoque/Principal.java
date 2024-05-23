@@ -1,8 +1,13 @@
 package Buquealtoque;
 
+import java.util.Scanner;
+
 public class Principal {
 
     public static void main(String[] args) {
+    	
+    	Login.iniciarSesion();
+    	
         Menu menu = new Menu();
         while (true) {
             menu.mostrarMenu();
@@ -15,7 +20,7 @@ public class Principal {
                     break;
                 case 2:
                     // Lógica para alta de cliente
-                    GestorPersona.altaPersona();
+                    GestorPersona.registrarNuevoUsuario();
                     break;
                 case 3:
                     // Lógica para pagar reserva (implementación futura)

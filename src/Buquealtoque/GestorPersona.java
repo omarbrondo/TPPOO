@@ -3,7 +3,36 @@ package Buquealtoque;
 import java.util.Scanner;
 
 public class GestorPersona {
-    private static final int CAPACIDAD_INICIAL = 10; 
+	
+	 public static void registrarNuevoUsuario() {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.print("Ingrese el correo electrónico: ");
+	        String email = scanner.nextLine();
+
+	        System.out.print("Ingrese el nombre: ");
+	        String nombre = scanner.nextLine();
+
+	        System.out.print("Ingrese el apellido: ");
+	        String apellido = scanner.nextLine();
+
+	        System.out.print("Ingrese el DNI: ");
+	        String dni = scanner.nextLine();
+
+	        System.out.print("Ingrese la contraseña: ");
+	        String password = scanner.nextLine();
+
+	        System.out.print("Ingrese el tipo de usuario (Cliente/Empleado): ");
+	        String tipo = scanner.nextLine();
+
+	        Persona.agregarUsuario(email, nombre, apellido, dni, password, tipo);
+	        System.out.println("Usuario registrado con éxito.");
+	    }
+	
+	
+	
+	
+   /* private static final int CAPACIDAD_INICIAL = 10; 
     private static Persona[] personas = new Persona[CAPACIDAD_INICIAL];
     private static int contadorPersonas = 0;
 
@@ -65,5 +94,5 @@ public class GestorPersona {
             System.out.println("Contraseña: " + personas[i].getContraseña());
             System.out.println();
         }
-    }
+    }*/
 }
