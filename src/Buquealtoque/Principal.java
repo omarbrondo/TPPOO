@@ -5,10 +5,19 @@ import java.util.Scanner;
 public class Principal {
 
     public static void main(String[] args) {
-    	
-    	Login.iniciarSesion();
-    	
+        while (true) {
+            // Iniciar sesión
+            Persona usuarioAutenticado = Login.iniciarSesion();
+
+            // Mostrar el menú principal
+            mostrarMenuPrincipal(usuarioAutenticado);
+        }
+    }
+
+    private static void mostrarMenuPrincipal(Persona usuarioAutenticado) {
+        Scanner scanner = new Scanner(System.in);
         Menu menu = new Menu();
+
         while (true) {
             menu.mostrarMenu();
             int opcion = menu.leerOpcion();
@@ -20,6 +29,7 @@ public class Principal {
                     break;
                 case 2:
                     // Lógica para alta de cliente
+                	
                     GestorPersona.registrarNuevoUsuario();
                     break;
                 case 3:
@@ -39,9 +49,8 @@ public class Principal {
                     GestorReserva.verMisReservas();
                     break;
                 case 7:
-                    System.out.println("Saliendo del sistema...");
-                    System.exit(0);
-                    break;
+                    System.out.println("Cerrando sesión...");
+                    return; // Volver al inicio de sesión
                 default:
                     System.out.println("Opción inválida");
                     break;
