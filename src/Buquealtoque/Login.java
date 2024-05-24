@@ -1,7 +1,11 @@
 package Buquealtoque;
 import java.util.Scanner;
+import java.io.Console;
+
 
 public class Login {
+	Console consola = null;
+	
     public static Persona iniciarSesion() {
         Scanner scanner = new Scanner(System.in);
         Persona usuarioAutenticado = null;

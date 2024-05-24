@@ -72,7 +72,7 @@ public class GestorReserva {
         String dni = scanner.nextLine();
 
         System.out.println("Reservas del cliente con DNI " + dni + ":");
-        
+
         boolean found = false;
         for (Reserva reserva : reservas) {
             if (reserva.getClienteDni().equals(dni)) {
