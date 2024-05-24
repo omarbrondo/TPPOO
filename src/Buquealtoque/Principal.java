@@ -25,12 +25,17 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     // Lógica para alta de reserva
+
                     GestorReserva.gestionarReserva();
                     break;
                 case 2:
                     // Lógica para alta de cliente
-                	
-                    GestorPersona.registrarNuevoUsuario();
+               	 if (usuarioAutenticado.getTipo().equalsIgnoreCase("Cliente")) {
+                     System.out.println("El usuario no tiene permisos para esta acción.");
+                 } else {
+                	 GestorPersona.registrarNuevoUsuario();
+                 }
+                    //GestorPersona.registrarNuevoUsuario();
                     break;
                 case 3:
                     // Lógica para pagar reserva (implementación futura)
