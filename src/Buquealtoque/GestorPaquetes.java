@@ -15,9 +15,10 @@ public class GestorPaquetes {
     }
 
     public static void mostrarPaquetes() {
-        System.out.println("Paquetes disponibles:");
+        System.out.printf("%-10s %-30s %-10s%n", "ID", "Descripción", "Valor");
+        System.out.println("------------------------------------------------------------");
         for (Producto paquete : paquetes) {
-            System.out.println(paquete);
+            System.out.printf("%-10d %-30s %-10.2f%n", paquete.getId(), paquete.getDescripcion(), paquete.getValor());
         }
     }
 
@@ -29,7 +30,9 @@ public class GestorPaquetes {
 
         Producto paquete = buscarPaquete(productId);
         if (paquete != null) {
-            System.out.println(paquete);
+            System.out.printf("%-10s %-30s %-10s%n", "ID", "Descripción", "Valor");
+            System.out.println("------------------------------------------------------------");
+            System.out.printf("%-10d %-30s %-10.2f%n", paquete.getId(), paquete.getDescripcion(), paquete.getValor());
         } else {
             System.out.println("Paquete con ID " + productId + " no encontrado.");
         }
