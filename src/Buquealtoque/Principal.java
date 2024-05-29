@@ -54,6 +54,9 @@ public class Principal {
                     GestorReserva.verMisReservas();
                     break;
                 case 7:
+                    Carrito.gestionarCarrito();
+                    break;
+                case 8:
                     System.out.println("Cerrando sesión...");
                     return; // Volver al inicio de sesión
                 default:

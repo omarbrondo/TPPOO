@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class GestorReserva {
     private static List<Buque> buques = new ArrayList<>();
     private static List<Reserva> reservas = new ArrayList<>();
-
+    public static int agregarCarrito = 1;
+    
     static {
         // Crear algunos buques
         buques.add(new Buque("B001", 1)); // 1 es Argentina
@@ -58,9 +60,18 @@ public class GestorReserva {
             if (!buque.getAsientos()[fila][columna]) {
                 buque.getAsientos()[fila][columna] = true;
                 reservas.add(new Reserva(dni, buque.getId(), destino, fila, columna));
+                Carrito.carritoCompras.add(new Reserva(dni, buque.getId(), destino, fila, columna));
                 System.out.println("Su Reserva fue  realizada exitosamente.");
-                System.out.println("Presione Enter para continuar...");
-                scanner.nextLine(); // Espera a que el usuario presione Enter y no salir repentinamente
+                System.out.println("¿Desea agregar algo más al carrito? 1. Si 2. No");
+                agregarCarrito = scanner.nextInt();
+
+                if (agregarCarrito == 1) {
+                    gestionarReserva();
+                } else {
+                    System.out.println("Gracias por su compra");
+                }
+                
+                 // Espera a que el usuario presione Enter y no salir repentinamente
             } else {
                 System.out.println("Asiento ya está ocupado.");
             }
@@ -92,7 +103,7 @@ public class GestorReserva {
         }
     }
 
-    private static String convertirAsiento(int fila, int columna) {
+    public static String convertirAsiento(int fila, int columna) {
         char letraColumna = (char) ('A' + columna); 
         return (fila + 1) + String.valueOf(letraColumna); 
     }
