@@ -66,13 +66,15 @@ public class Carrito extends GestorReserva {
         // Mostrar las reservas de viaje
         if (!reservas.isEmpty()) {
             System.out.println("Reservas de Viaje:");
-            System.out.printf("%-12s %-10s %-10s %-10s %-10s\n", "ID", "Buque", "Destino", "Asiento", "Pagado");
-            System.out.println("------------------------------------------------------------");
+            System.out.printf("%-12s %-10s %-10s %-10s %-10s %-10s\n", "ID", "Buque", "Destino", "Asiento", "Pagado", "Monto");
+            System.out.println("-------------------------------------------------------------------------");
             for (Reserva reserva : reservas) {
                 String destino = reserva.getDestino() == 1 ? "Argentina" : "Uruguay";
                 String asiento = convertirAsiento(reserva.getFila(), reserva.getColumna());
                 String pagado = reserva.isPagada() ? "Sí" : "No";
-                System.out.printf("%-12d %-10s %-10s %-10s %-10s\n", reserva.getId(), reserva.getBuqueId(), destino, asiento, pagado);
+                Buque buque = encontrarBuque(reserva.getBuqueId());
+                double montoBuque = buque != null ? buque.getMonto() : 0.0;
+                System.out.printf("%-12d %-10s %-10s %-10s %-10s %-10.2f\n", reserva.getId(), reserva.getBuqueId(), destino, asiento, pagado, montoBuque);
             }
         } else {
             System.out.println("No hay reservas de viaje en el carrito.");

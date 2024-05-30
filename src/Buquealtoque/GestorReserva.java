@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class GestorReserva {
-    private static List<Buque> buques = new ArrayList<>();
+    protected static List<Buque> buques = new ArrayList<>();
     private static List<Reserva> reservas = new ArrayList<>();
     public static int agregarCarrito = 1;
     
     static {
         // Crear algunos buques
-        buques.add(new Buque("B001", 1)); // 1 es Argentina
-        buques.add(new Buque("B002", 2)); // 2 es Uruguay
+        buques.add(new Buque("B001", 1,45000)); // 1 es Argentina
+        buques.add(new Buque("B002", 2,65000)); // 2 es Uruguay
     }
 
     public static void mostrarAsientosBuque() {
@@ -109,7 +108,7 @@ public class GestorReserva {
         return (fila + 1) + String.valueOf(letraColumna); 
     }
 
-    private static Buque encontrarBuque(String id) {
+    protected static Buque encontrarBuque(String id) {
         for (Buque buque : buques) {
             if (buque.getId().equals(id)) {
                 return buque;

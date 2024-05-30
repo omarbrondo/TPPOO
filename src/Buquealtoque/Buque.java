@@ -4,12 +4,12 @@ public class Buque {
     private String id;
     private boolean[][] asientos; // Matriz de asientos
     private int destino;
-    
+    private double monto;
 
-
-    public Buque(String id, int destino) {
+    public Buque(String id, int destino, double monto) {
         this.id = id;
         this.destino = destino;
+        this.monto = monto;
         this.asientos = new boolean[4][5]; // 4 filas y 5 columnas, total 20 asientos
     }
 
@@ -19,6 +19,10 @@ public class Buque {
 
     public int getDestino() {
         return destino;
+    }
+
+    public double getMonto() {
+        return monto;
     }
 
     public boolean[][] getAsientos() {
