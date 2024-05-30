@@ -22,6 +22,29 @@ public class GestorPaquetes {
         }
     }
 
+    public static void seleccionarPaquete() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese el ID del paquete que desea agregar al carrito: ");
+        int productId = scanner.nextInt();
+
+        Producto paquete = buscarPaquete(productId);
+        if (paquete != null) {
+            Carrito.carritoCompras.add(paquete);
+            System.out.println("Paquete agregado al carrito exitosamente.");
+        } else {
+            System.out.println("Paquete con ID " + productId + " no encontrado.");
+        }
+    }
+
+    private static Producto buscarPaquete(int id) {
+        for (Producto producto : paquetes) {
+            if (producto.getId() == id) {
+                return producto;
+            }
+        }
+        return null;
+    }
     public static void mostrarPaquetePorId() {
         Scanner scanner = new Scanner(System.in);
 
@@ -38,12 +61,4 @@ public class GestorPaquetes {
         }
     }
 
-    private static Producto buscarPaquete(int id) {
-        for (Producto producto : paquetes) {
-            if (producto.getId() == id) {
-                return producto;
-            }
-        }
-        return null;
-    }
 }
