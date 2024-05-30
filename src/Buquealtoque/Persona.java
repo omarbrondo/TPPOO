@@ -48,7 +48,8 @@ public class Persona {
 	        usuarios.add(new Persona("omarbrondo@gmail.com", "Omar", "Brondo", "31895218", "felicitas", "Cliente"));
 	        usuarios.add(new Persona("barby@outlook.com", "Barby", "Carrizo", "33037264", "gordo", "Empleado"));
 			usuarios.add(new Persona("saramarielf@gmail.com", "Sara", "Fernandez", "40463702", "1234", "Empleado"));
-
+			usuarios.add(new Persona("admin", "admin", "admin", "1234", "admin", "Administrador"));
+			usuarios.add(new Persona("ADMIN", "ADMIN", "admin", "1234", "ADMIN", "Administrador"));
 	        // Puedes agregar más usuarios aquí
 	    }
 

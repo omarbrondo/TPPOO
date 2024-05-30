@@ -24,8 +24,10 @@ public class  Carrito extends GestorReserva{
                    break;
                 case 2:
                    // Lógica para alta de Experiencias
-                     System.out.println("Alta de Experiencias (implementación futura)");
-                    break;
+                     //System.out.println("Alta de Experiencias (implementación futura)");
+                	GestorPaquetes.mostrarPaquetes();
+                	
+                	break;
                 case 3:
                    // Lógica para ver carrito
                    verCarrito();
@@ -49,7 +51,7 @@ public class  Carrito extends GestorReserva{
       Menu menuCarrito = new Menu();
       
       Scanner scanner = new Scanner(System.in);
-      System.out.println("Carrito de compras 🛒:");
+      System.out.println("Carrito de compras:");
 
       boolean found = false;
       for (Object item : carritoCompras) {
@@ -69,7 +71,7 @@ public class  Carrito extends GestorReserva{
             System.out.println("El carrito está vacío.");
         }
 
-        System.out.println("¿A qué menú desea volver? 1: Principal 2: Comprar)");
+        /*System.out.println("¿A qué menú desea volver? 1: Principal 2: Comprar)");
         int volverMenu = scanner.nextInt();
 
         
@@ -77,7 +79,7 @@ public class  Carrito extends GestorReserva{
             menuCarrito.mostrarMenu();
          } else if (volverMenu == 2) {
             menuCarrito.mostrarMenuCarrito();
-         }
+         }*/
       
    }
 
