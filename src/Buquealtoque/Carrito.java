@@ -51,27 +51,43 @@ public class Carrito extends GestorReserva {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Carrito de compras:");
 
-        boolean found = false;
+        List<Reserva> reservas = new ArrayList<>();
+        List<Producto> productos = new ArrayList<>();
+
+        // Separar las reservas de los productos
         for (Object item : carritoCompras) {
             if (item instanceof Reserva) {
-                Reserva reserva = (Reserva) item;
-                System.out.println("ID de reserva: " + reserva.getId());
-                System.out.println("Buque: " + reserva.getBuqueId());
-                System.out.println("Destino: " + (reserva.getDestino() == 1 ? "Argentina" : "Uruguay"));
-                System.out.println("Asiento: " + convertirAsiento(reserva.getFila(), reserva.getColumna()));
-                System.out.println("Pagado: " + reserva.isPagada());
-                System.out.println("\n");
-                found = true;
+                reservas.add((Reserva) item);
             } else if (item instanceof Producto) {
-                Producto producto = (Producto) item;
-                System.out.println(producto);
-                found = true;
+                productos.add((Producto) item);
             }
         }
 
-        if (!found) {
-            System.out.println("El carrito está vacío.");
+        // Mostrar las reservas de viaje
+        if (!reservas.isEmpty()) {
+            System.out.println("Reservas de Viaje:");
+            System.out.printf("%-12s %-10s %-10s %-10s %-10s\n", "ID", "Buque", "Destino", "Asiento", "Pagado");
+            System.out.println("------------------------------------------------------------");
+            for (Reserva reserva : reservas) {
+                String destino = reserva.getDestino() == 1 ? "Argentina" : "Uruguay";
+                String asiento = convertirAsiento(reserva.getFila(), reserva.getColumna());
+                String pagado = reserva.isPagada() ? "Sí" : "No";
+                System.out.printf("%-12d %-10s %-10s %-10s %-10s\n", reserva.getId(), reserva.getBuqueId(), destino, asiento, pagado);
+            }
+        } else {
+            System.out.println("No hay reservas de viaje en el carrito.");
+        }
+
+        // Mostrar los productos de experiencias
+        if (!productos.isEmpty()) {
+            System.out.println("\nProductos de Experiencias:");
+            System.out.printf("%-12s %-30s %-10s\n", "ID", "Descripción", "Valor");
+            System.out.println("------------------------------------------------------------");
+            for (Producto producto : productos) {
+                System.out.printf("%-12d %-30s %-10.2f\n", producto.getId(), producto.getDescripcion(), producto.getValor());
+            }
+        } else {
+            System.out.println("\nNo hay productos de experiencias en el carrito.");
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package login;
+package Buquealtoque;
 
 import java.util.Scanner;
 
