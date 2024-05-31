@@ -25,8 +25,7 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     // Lógica para alta de reserva
-
-                    GestorReserva.gestionarReserva();
+                    Carrito.gestionarCarrito();
                     break;
                 case 2:
                     // Lógica para alta de cliente
@@ -53,10 +52,8 @@ public class Principal {
                     // Ver mis reservas
                     GestorReserva.verMisReservas();
                     break;
-                case 7:
-                    Carrito.gestionarCarrito();
-                    break;
-                case 8:
+
+                case 0:
                     System.out.println("Cerrando sesión...");
                     return; // Volver al inicio de sesión
                 default:
