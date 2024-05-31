@@ -1,5 +1,8 @@
 package Buquealtoque;
-
-public abstract class Pago {
-    public abstract void realizarPago(double monto);
+public class Pago 
+{
+	
+	private TipoPago tipo; 
+	
+	//metodos..
 }

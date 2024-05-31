@@ -15,6 +15,19 @@ public class GestorReserva {
         buques.add(new Buque("B002", 2,65000)); // 2 es Uruguay
     }
 
+    public static void mostrarAsientosBuque() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese el ID del buque:");
+        String buqueId = scanner.nextLine();
+
+        Buque buque = encontrarBuque(buqueId);
+        if (buque != null) {
+            buque.mostrarAsientos();
+        } else {
+            System.out.println("Buque no encontrado.");
+        }
+    }
 
     public static void gestionarReserva() {
         Scanner scanner = new Scanner(System.in);
@@ -22,12 +35,9 @@ public class GestorReserva {
         System.out.println("Ingrese el DNI del cliente:");
         String dni = scanner.nextLine();
 
-        System.out.println("¿A qué destino desea viajar?\n");
-        System.out.println("[1] Argentina\n");
-        System.out.println("[2] Uruguay\n");
-        System.out.println("Opcion: ");
+        System.out.println("¿A qué destino desea viajar? (1 para Argentina, 2 para Uruguay):");
         int destino = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine(); // Consumir el salto de línea pendiente
 
         Buque buque = encontrarBuquePorDestino(destino);
         if (buque != null) {
@@ -61,7 +71,7 @@ public class GestorReserva {
                     System.out.println("Gracias por su compra");
                 }
                 
-                
+                 // Espera a que el usuario presione Enter y no salir repentinamente
             } else {
                 System.out.println("Asiento ya está ocupado.");
             }
@@ -76,7 +86,7 @@ public class GestorReserva {
         String dni = scanner.nextLine();
 
         System.out.println("Reservas del cliente con DNI " + dni + ":");
-
+        
         boolean found = false;
         for (Reserva reserva : reservas) {
             if (reserva.getClienteDni().equals(dni)) {
@@ -84,20 +94,7 @@ public class GestorReserva {
                 System.out.println("Buque: " + reserva.getBuqueId());
                 System.out.println("Destino: " + (reserva.getDestino() == 1 ? "Argentina" : "Uruguay")); // Mostrar el destino del buque como texto
                 System.out.println("Asiento: " + convertirAsiento(reserva.getFila(), reserva.getColumna()));
-                
-                // Verificar si la reserva está pagada en el carrito
-                boolean pagada = false;
-                for (Object item : Carrito.carritoCompras) {
-                    if (item instanceof Reserva) {
-                        Reserva carritoReserva = (Reserva) item;
-                        if (reserva.getDestino() == 1 && carritoReserva.isPagada()) {
-                            pagada = true;
-                            break;
-                        }
-                    }
-                }
-                
-                System.out.println("Pagado: " + pagada);
+                System.out.println("Pagado: " + reserva.isPagada());
                 found = true;
             }
         }
@@ -105,7 +102,6 @@ public class GestorReserva {
             System.out.println("No hay reservas para este DNI.");
         }
     }
-
 
     public static String convertirAsiento(int fila, int columna) {
         char letraColumna = (char) ('A' + columna); 
