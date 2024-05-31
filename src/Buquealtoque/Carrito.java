@@ -53,6 +53,8 @@ public class Carrito extends GestorReserva {
 
         List<Reserva> reservas = new ArrayList<>();
         List<Producto> productos = new ArrayList<>();
+        double totalReservas = 0.0;
+        double totalProductos = 0.0;
 
         // Separar las reservas de los productos
         for (Object item : carritoCompras) {
@@ -67,14 +69,14 @@ public class Carrito extends GestorReserva {
         if (!reservas.isEmpty()) {
             System.out.println("Reservas de Viaje:");
             System.out.printf("%-12s %-10s %-10s %-10s %-10s %-10s\n", "ID", "Buque", "Destino", "Asiento", "Pagado", "Monto");
-            System.out.println("-------------------------------------------------------------------------");
+            System.out.println("------------------------------------------------------------");
             for (Reserva reserva : reservas) {
                 String destino = reserva.getDestino() == 1 ? "Argentina" : "Uruguay";
                 String asiento = convertirAsiento(reserva.getFila(), reserva.getColumna());
                 String pagado = reserva.isPagada() ? "Sí" : "No";
-                Buque buque = encontrarBuque(reserva.getBuqueId());
-                double montoBuque = buque != null ? buque.getMonto() : 0.0;
-                System.out.printf("%-12d %-10s %-10s %-10s %-10s %-10.2f\n", reserva.getId(), reserva.getBuqueId(), destino, asiento, pagado, montoBuque);
+                double montoReserva = reserva.calcularMonto();
+                System.out.printf("%-12d %-10s %-10s %-10s %-10s %-10.2f\n", reserva.getId(), reserva.getBuqueId(), destino, asiento, pagado, montoReserva);
+                totalReservas += montoReserva; // Sumar el monto de la reserva al total
             }
         } else {
             System.out.println("No hay reservas de viaje en el carrito.");
@@ -87,9 +89,16 @@ public class Carrito extends GestorReserva {
             System.out.println("------------------------------------------------------------");
             for (Producto producto : productos) {
                 System.out.printf("%-12d %-30s %-10.2f\n", producto.getId(), producto.getDescripcion(), producto.getValor());
+                totalProductos += producto.getValor();
             }
         } else {
             System.out.println("\nNo hay productos de experiencias en el carrito.");
         }
+
+        // Mostrar el total general
+        double totalGeneral = totalReservas + totalProductos;
+        System.out.println("Total Reservas: " + totalReservas);
+        System.out.println("Total Productos: " + totalProductos);
+        System.out.println("Total General: " + totalGeneral);
     }
 }

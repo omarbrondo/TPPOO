@@ -108,6 +108,14 @@ public class GestorReserva {
         return (fila + 1) + String.valueOf(letraColumna); 
     }
 
+    /*protected static Buque encontrarBuque(String id) {
+        for (Buque buque : buques) {
+            if (buque.getId().equals(id)) {
+                return buque;
+            }
+        }
+        return null;
+    }*/
     protected static Buque encontrarBuque(String id) {
         for (Buque buque : buques) {
             if (buque.getId().equals(id)) {
