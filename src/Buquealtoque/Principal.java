@@ -25,8 +25,7 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     // Lógica para alta de reserva
-
-                    GestorReserva.gestionarReserva();
+                    Carrito.gestionarCarrito();
                     break;
                 case 2:
                     // Lógica para alta de cliente
@@ -54,9 +53,25 @@ public class Principal {
                     GestorReserva.verMisReservas();
                     break;
                 case 7:
-                    Carrito.gestionarCarrito();
-                    break;
+                GestorTicketIncidencia.crearTicketIncidencia(usuarioAutenticado.getEmail());
+                break;
+
                 case 8:
+                GestorTicketIncidencia.mostrarTickets();
+
+    // Resolver ticket
+    System.out.println("Seleccione el ticket a resolver (Ingrese ID), elija 0 para salir:");
+    int idTicket = scanner.nextInt();
+    scanner.nextLine(); // Limpiar buffer
+    if (idTicket == 0) {
+        break;
+    }
+    System.out.println("Ingrese la descripción de la resolución:");
+    String resolucion = scanner.nextLine();
+    GestorTicketIncidencia.resolverTicket(idTicket, resolucion);
+    break;
+
+                case 0:
                     System.out.println("Cerrando sesión...");
                     return; // Volver al inicio de sesión
                 default:

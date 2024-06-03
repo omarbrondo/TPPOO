@@ -40,6 +40,9 @@ public class Persona {
 	    public String getTipo() {
 	        return tipo;
 	    }
+	    public String getDNI() {
+	    	return dni;
+	    }
 
 	    // Lista de usuarios predefinidos
 	    private static List<Persona> usuarios = new ArrayList<>();
