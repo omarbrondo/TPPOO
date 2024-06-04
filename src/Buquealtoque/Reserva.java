@@ -5,7 +5,7 @@ public class Reserva {
     private String buqueId;
     private int fila;
     private int columna;
-    private static int contadorReservas = 00100; // Contador para generar IDs únicos
+    private static int contadorReservas = 500; // Contador para generar IDs únicos
     private int id;
     private boolean pagada;
     private int destino;
@@ -51,5 +51,14 @@ public class Reserva {
 
     public void setPagada(boolean pagada) {
         this.pagada = pagada;
+    }
+
+    public double calcularMonto() {
+        Buque buque = GestorReserva.encontrarBuque(buqueId);
+        if (buque != null) {
+            return buque.getMonto();
+        } else {
+            return 0.0; // O devuelve un valor predeterminado si el buque no se encuentra
+        }
     }
 }

@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class GestorReserva {
     protected static List<Buque> buques = new ArrayList<>();
     private static List<Reserva> reservas = new ArrayList<>();
-    public static int agregarCarrito = 1;
     
     static {
         // Crear algunos buques
@@ -31,8 +30,8 @@ public class GestorReserva {
 
         Buque buque = encontrarBuquePorDestino(destino);
         if (buque != null) {
+            
             buque.mostrarAsientos();
-
             System.out.println("Ingrese el asiento (por ejemplo, 1A, 2B):");
             String asientoId = scanner.nextLine().toUpperCase();;
 
@@ -42,26 +41,23 @@ public class GestorReserva {
                 return;
             }
 
-
             int fila = filaColumna[0];
             int columna = filaColumna[1];
-
+            
             if (!buque.getAsientos()[fila][columna]) {
                 buque.getAsientos()[fila][columna] = true;
                 reservas.add(new Reserva(dni, buque.getId(), destino, fila, columna));
-                Carrito.carritoCompras.add(new Reserva(dni, buque.getId(), destino, fila, columna));
+                GestionarCarrito.carritoCompras.add(new Reserva(dni, buque.getId(), destino, fila, columna));
                 System.out.println("Su Reserva fue  realizada exitosamente.");
                 System.out.println("¿Desea agregar algo más al carrito? 1. Si 2. No");
-                agregarCarrito = scanner.nextInt();
+                GestionarCarrito.agregarCarrito = scanner.nextInt();
 
-                if (agregarCarrito == 1) {
+                if (GestionarCarrito.agregarCarrito == 1) {
                     //gestionarReserva();
-                	Carrito.gestionarCarrito();
+                	GestionarCarrito.gestionarCarrito();
                 } else {
                     System.out.println("Gracias por su compra");
                 }
-                
-                
             } else {
                 System.out.println("Asiento ya está ocupado.");
             }
@@ -70,7 +66,10 @@ public class GestorReserva {
         }
     }
 
-    public static void verMisReservas() {
+
+    //Esto ya quedo Viejo, no se usa mas
+
+    /*public static void verMisReservas() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese su DNI para ver sus reservas:");
         String dni = scanner.nextLine();
@@ -87,7 +86,7 @@ public class GestorReserva {
                 
                 // Verificar si la reserva está pagada en el carrito
                 boolean pagada = false;
-                for (Object item : Carrito.carritoCompras) {
+                for (Object item : GestionarCarrito.carritoCompras) {
                     if (item instanceof Reserva) {
                         Reserva carritoReserva = (Reserva) item;
                         if (reserva.getDestino() == 1 && carritoReserva.isPagada()) {
@@ -104,7 +103,7 @@ public class GestorReserva {
         if (!found) {
             System.out.println("No hay reservas para este DNI.");
         }
-    }
+    }*/
 
 
     public static String convertirAsiento(int fila, int columna) {

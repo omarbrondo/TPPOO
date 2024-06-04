@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class GestorPaquetes {
     private static List<Producto> paquetes = new ArrayList<>();
-
+    public static Menu menuCarrito = new Menu();
+    
     static {
         // Crear algunos paquetes
         paquetes.add(new Producto(1, "Cena en Colonia", 20000)); 
@@ -30,8 +31,19 @@ public class GestorPaquetes {
 
         Producto paquete = buscarPaquete(productId);
         if (paquete != null) {
-            Carrito.carritoCompras.add(paquete);
+            GestionarCarrito.carritoCompras.add(paquete);
             System.out.println("Paquete agregado al carrito exitosamente.");
+            System.out.println("¿Desea agregar algo más al carrito? 1. Si 2. No");
+            GestionarCarrito.agregarCarrito = scanner.nextInt();
+                if (GestionarCarrito.agregarCarrito == 1) {
+                    //gestionarReserva();
+                	GestionarCarrito.gestionarCarrito();
+                } else {
+                    System.out.println("Gracias por su compra");
+                    System.out.println("Presione Enter para continuar...");
+                    scanner.nextLine(); // Espera a que el usuario presione Enter y no salir repentinamente
+                    menuCarrito.mostrarMenuCarrito();
+                }    
         } else {
             System.out.println("Paquete con ID " + productId + " no encontrado.");
         }

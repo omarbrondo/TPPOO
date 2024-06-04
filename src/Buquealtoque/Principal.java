@@ -25,7 +25,7 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     // Lógica para alta de reserva
-                    Carrito.gestionarCarrito();
+                    GestionarCarrito.gestionarCarrito();
                     break;
                 case 2:
                     // Lógica para alta de cliente
@@ -38,7 +38,8 @@ public class Principal {
                     break;
                 case 3:
                     // Lógica para pagar reserva (implementación futura)
-                    System.out.println("Pagar reserva (implementación futura)");
+                    //System.out.println("Pagar reserva (implementación futura)");
+                    GestionarCarrito.pagarCarrito();
                     break;
                 case 4:
                     // Mostrar todos los paquetes
@@ -50,26 +51,32 @@ public class Principal {
                     break;
                 case 6:
                     // Ver mis reservas
-                    GestorReserva.verMisReservas();
+                    //GestorReserva.verMisReservas();
+                    GestionarCompras.gestionarCompras();
                     break;
                 case 7:
-                GestorTicketIncidencia.crearTicketIncidencia(usuarioAutenticado.getEmail());
-                break;
-
+                    GestorTicketIncidencia.crearTicketIncidencia(usuarioAutenticado.getEmail());
+                    break;
+    
                 case 8:
-                GestorTicketIncidencia.mostrarTickets();
-
-    // Resolver ticket
-    System.out.println("Seleccione el ticket a resolver (Ingrese ID), elija 0 para salir:");
-    int idTicket = scanner.nextInt();
-    scanner.nextLine(); // Limpiar buffer
-    if (idTicket == 0) {
-        break;
-    }
-    System.out.println("Ingrese la descripción de la resolución:");
-    String resolucion = scanner.nextLine();
-    GestorTicketIncidencia.resolverTicket(idTicket, resolucion);
-    break;
+                if(usuarioAutenticado.getTipo().equalsIgnoreCase("Soporte")||usuarioAutenticado.getTipo().equalsIgnoreCase("Administrador")){
+                    GestorTicketIncidencia.mostrarTickets();
+                    // Resolver ticket
+                   System.out.println("Seleccione el ticket a resolver (Ingrese ID), elija 0 para salir:");
+                   int idTicket = scanner.nextInt();
+                   scanner.nextLine(); // Limpiar buffer
+                   if (idTicket == 0) {
+                       break;
+                   }
+                   System.out.println("Ingrese la descripción de la resolución:");
+                   String resolucion = scanner.nextLine();
+                   GestorTicketIncidencia.resolverTicket(idTicket, resolucion);
+                   break;
+                }
+                else{
+                    System.out.println("El usuario no tiene permisos para esta accion");
+                }
+                break;
 
                 case 0:
                     System.out.println("Cerrando sesión...");

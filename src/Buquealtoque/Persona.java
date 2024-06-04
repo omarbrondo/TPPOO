@@ -44,7 +44,7 @@ public class Persona {
 	    	return dni;
 	    }
 
-	    // Lista de usuarios predefinidos
+	    // Lista de usuarios ya cargados de ejemplo o como BBDD
 	    private static List<Persona> usuarios = new ArrayList<>();
 
 	    static {
@@ -53,7 +53,9 @@ public class Persona {
 			usuarios.add(new Persona("saramarielf@gmail.com", "Sara", "Fernandez", "40463702", "1234", "Empleado"));
 			usuarios.add(new Persona("admin", "admin", "admin", "1234", "admin", "Administrador"));
 			usuarios.add(new Persona("ADMIN", "ADMIN", "admin", "1234", "ADMIN", "Administrador"));
-	        // Puedes agregar más usuarios aquí
+			usuarios.add(new Persona("jperez@buquealtoque.com", "Juan", "Perez", "38456123", "1234", "Empleado"));
+			usuarios.add(new Persona("ptorres@buquealtoque.com", "Pedro", "Torres", "25656556", "1234", "Soporte"));
+	        //Se pueden agregar mas usuarios en esta parte
 	    }
 
 	    // Método para validar usuario
