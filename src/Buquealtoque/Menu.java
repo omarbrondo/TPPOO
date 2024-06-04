@@ -12,6 +12,7 @@ public class Menu {
         System.out.println("[6] Ver mis compras");
         System.out.println("[7] Carga de ticket");
         System.out.println("[8] Mostrar ticket");
+        System.out.println("[9] Reporte compras");
         System.out.println("[0] Salir\n");
         System.out.println("Ingrese la opción deseada:");
     }

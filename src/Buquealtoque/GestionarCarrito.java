@@ -1,5 +1,6 @@
 package Buquealtoque;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,7 +9,8 @@ public class GestionarCarrito extends GestorReserva {
     public static List<Object> carritoCompras = new ArrayList<>();
     public static int agregarCarrito = 1;
     public static Menu menuCarrito = new Menu();
-    
+    public static Boolean usuarioPremium = false;
+    public static int idCompra = 202401;
 
     public static void gestionarCarrito() {
         
@@ -64,7 +66,7 @@ public class GestionarCarrito extends GestorReserva {
             }
         }
 
-        GestionarCompras.detalleCompras(reservas, productos,false);
+        GestionarCompras.detalleCompras(reservas, productos,0,LocalDate.now(),false);
         System.out.println("Presione Enter para continuar...");
         scanner.nextLine(); // Espera a que el usuario presione Enter y no salir repentinamente
         
@@ -72,6 +74,8 @@ public class GestionarCarrito extends GestorReserva {
 
     public static void pagarCarrito() {
         
+        usuarioPremium = Principal.usuarioAutenticado.getPremium();
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Seleccione el método de pago:");
         System.out.println("1. Tarjeta de crédito");
@@ -104,10 +108,17 @@ public class GestionarCarrito extends GestorReserva {
                 return;
         }
 
+        
         double totalMonto = calcularTotalCarrito();
+        if (usuarioPremium == true) {
+            System.out.println("\n---Usted es un usuario premium, por lo tanto tiene un 15% de descuento en su compra---\n");
+            totalMonto = totalMonto - (totalMonto * 0.15);
+
+        }
         metodoPago.realizarPago(totalMonto);
         compraPaga.addAll(carritoCompras);
-        GestionarCompras.compras.add(new Compras(1, compraPaga));
+        GestionarCompras.compras.add(new Compras(idCompra, compraPaga));
+        idCompra++;
 
         // Marcar las reservas como pagadas
         for (Object item : carritoCompras) {
@@ -123,7 +134,7 @@ public class GestionarCarrito extends GestorReserva {
 
     private static double calcularTotalCarrito() {
         double total = 0.0;
-
+        
         for (Object item : carritoCompras) {
             if (item instanceof Reserva) {
                 Reserva reserva = (Reserva) item;
@@ -135,6 +146,11 @@ public class GestionarCarrito extends GestorReserva {
             }
         }
 
+        if (total >= 100000) {
+            Principal.usuarioAutenticado.setPremium(true);// Aplicar descuento del 10% si el total supera los 100 mil
+        }else{
+            Principal.usuarioAutenticado.setPremium(false);
+        }
         return total;
     }
 

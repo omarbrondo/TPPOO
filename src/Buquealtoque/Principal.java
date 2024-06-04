@@ -3,11 +3,12 @@ package Buquealtoque;
 import java.util.Scanner;
 
 public class Principal {
+    public static Persona usuarioAutenticado = null;
 
     public static void main(String[] args) {
         while (true) {
             // Iniciar sesión
-            Persona usuarioAutenticado = Login.iniciarSesion();
+            usuarioAutenticado = Login.iniciarSesion();
 
             // Mostrar el menú principal
             mostrarMenuPrincipal(usuarioAutenticado);
@@ -52,7 +53,7 @@ public class Principal {
                 case 6:
                     // Ver mis reservas
                     //GestorReserva.verMisReservas();
-                    GestionarCompras.gestionarCompras();
+                    GestionarCompras.verCompras();
                     break;
                 case 7:
                     GestorTicketIncidencia.crearTicketIncidencia(usuarioAutenticado.getEmail());
@@ -77,7 +78,14 @@ public class Principal {
                     System.out.println("El usuario no tiene permisos para esta accion");
                 }
                 break;
-
+                case 9:
+                	if(!usuarioAutenticado.getTipo().equalsIgnoreCase("Cliente")) {
+                		GestionarCompras.generarReporteComprasMes();
+                	}
+                	else {
+                        System.out.println("El usuario no tiene permisos para esta accion");
+                	}
+                    break;
                 case 0:
                     System.out.println("Cerrando sesión...");
                     return; // Volver al inicio de sesión
