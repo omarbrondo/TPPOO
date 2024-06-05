@@ -88,6 +88,7 @@ public class Principal {
                     break;
                 case 0:
                     System.out.println("Cerrando sesión...");
+                    Login.usuarioAutenticado = null;
                     return; // Volver al inicio de sesión
                 default:
                     System.out.println("Opción inválida");

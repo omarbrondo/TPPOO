@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Menu {
     public void mostrarMenu() {
         System.out.println("\n[1] Comprar");
-        System.out.println("[2] Alta de cliente");
+        System.out.println("[2] Alta de usuario");
         System.out.println("[3] Pagar reserva");
         System.out.println("[4] Mostrar todos los paquetes");
         System.out.println("[5] Buscar paquete por ID");
