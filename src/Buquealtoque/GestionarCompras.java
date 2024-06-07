@@ -126,7 +126,7 @@ public class GestionarCompras extends GestorReserva {
         }
 
         // Imprimir el reporte de compras del mes
-        System.out.println("Reporte de compras del mes actual:");
+        /*System.out.println("Reporte de compras del mes actual:");
         for (Compras compra : comprasMesActual) {
             List<Object> items = compra.getCompras();
             for (Object item : items) {
@@ -138,7 +138,34 @@ public class GestionarCompras extends GestorReserva {
                     System.out.println("Producto - Descripción: " + producto.getDescripcion() + ", Valor: " + producto.getValor());
                 }
             }
+        }*/
+     // Imprimir el reporte de compras del mes
+        System.out.println("Reporte de compras del mes actual:");
+        System.out.println("==================================");
+
+        for (Compras compra : comprasMesActual) {
+            List<Object> items = compra.getCompras();
+            for (Object item : items) {
+                if (item instanceof Reserva) {
+                    Reserva reserva = (Reserva) item;
+                    System.out.println("\nTipo de item: Reserva");
+                    System.out.println("---------------------");
+                    System.out.println("Cliente: " + reserva.getClienteDni());
+                    System.out.println("Buque: " + reserva.getBuqueId());
+                    System.out.println("Destino: " + reserva.getDestino());
+                    System.out.println("Asiento: " + reserva.getFila() + reserva.getColumna());
+                } else if (item instanceof Producto) {
+                    Producto producto = (Producto) item;
+                    System.out.println("\nTipo de item: Producto");
+                    System.out.println("----------------------");
+                    System.out.println("Descripción: " + producto.getDescripcion());
+                    System.out.println("Valor: " + producto.getValor());
+                }
+            }
+            System.out.println("\n==================================");
         }
+
+
         System.out.println("Presione Enter para continuar...");
         scanner.nextLine(); 
     }
